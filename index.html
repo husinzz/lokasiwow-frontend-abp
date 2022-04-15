@@ -53,18 +53,21 @@
     <div class="container-fluid">
       <div class="row gx-2">
         <div class="col-sm-12 col-md-6 col-lg-3" style="position: relative;">
-          <div class="card">
-            <img src="https://placeholder.pics/svg/300x200" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-              <p style="font-size: 12px; color: gray;" class="mb-0">Updated 7000 years ago</p>
+          <a href="#">
+            <div class="card">
+              <img src="https://placeholder.pics/svg/300x200" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's
+                  content.</p>
+                <p style="font-size: 12px; color: gray;" class="mb-0">Updated 7000 years ago</p>
+              </div>
             </div>
-            <!-- Generate id buat jquerynya, Generate ini id="likedButtonN" N = iterasi ke berapa saat itu,  -->
-            <button id="likeButton1" class="btn btn-warning" onclick="likeButton('1')"
-              style="position: absolute; top: 2%; right: 3%;">Like</button>
-          </div>
+          </a>
+          <!-- Generate id buat jquerynya, Generate ini id="likedButtonN" N = iterasi ke berapa saat itu,  -->
+          <button id="likeButton1" class="btn btn-warning" onclick="likeButton('1',false)"
+            style="position: absolute; top: 2%; right: 3%;">Like</button>
         </div>
         <div class="col-sm-12 col-md-6 col-lg-3">
           <div class="card">
@@ -114,12 +117,11 @@
     crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script>
-    function likeButton(n) {
+    function likeButton(n, isLiked) {
       // SEND LIKE REQUEST TO SERVER HERE
       // GIMANA CARA KOMUNIKASIIN KE JS DARI PHP KALAU DIA ITU UDAH DI LIKE
 
-
-      const liked = false // INI BUAT CONTOH DOANG
+      var liked = isLiked // INI BUAT CONTOH DOANG
 
       if (!liked) {
         // Jalanin like
@@ -128,7 +130,7 @@
           data: {
 
           },
-          success: () => {
+          success: function() {
             $(`#likeButton${n}`).removeClass('btn-warning');
             $(`#likeButton${n}`).addClass('btn-success');
           },
@@ -140,7 +142,7 @@
           data: {
 
           },
-          success: () => {
+          success: function() {
             $(`#likeButton${n}`).removeClass('btn-success');
             $(`#likeButton${n}`).addClass('btn-warning');
           },
